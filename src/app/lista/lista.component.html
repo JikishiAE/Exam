@@ -1,0 +1,15 @@
+<div class="pokemon-grid">
+    <div class="box" 
+    *ngFor="let pokemon of pokemons">
+        <div class="backPokeball" *ngIf="pokemon.name != 'slowking'">
+            <img [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}">
+            <div class="pokemon-types">
+              <div *ngFor="let type of pokemon.types">
+                <img src="../../assets/img/Types/{{type.type.name}}.jpg" alt="{{type.type.name}}">
+              </div>
+            </div>
+            <h3 class="capitalize text-white">{{ pokemon.name }}</h3>
+            
+        </div>
+    </div>
+</div>

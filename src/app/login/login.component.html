@@ -1,0 +1,46 @@
+<section>
+    <div class="container">
+        <div class="user signinBx">
+            <div class="formBx">
+                <form id="loginForm" [formGroup]="LoginForm" (ngSubmit)="login()">
+                    <h2>Iniciar Sesión</h2>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="correo" [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                               placeholder="Ex. pat@example.com">
+                        <mat-hint>Errors appear instantly!</mat-hint>
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                          Ingresa una dirección de correo válida
+                        </mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                          Email es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <input formControlName="contrasena" type="password" placeholder="Contraseña">
+                    <input type="submit" value="Login">
+                    <p class="signup">¿No tienes una cuenta? <a (click)="cambiarSesion()">Registrarse</a></p>
+                </form>
+            </div>
+            <div class="imgBx">
+                <img class="imgSign" src="../../assets/img/Login.jpg" alt="Imagen Login">
+            </div>
+        </div>
+        <div class="user signupBx">
+            <div class="imgBx">
+                <img class="imgSign" src="../../assets/img/Registro.jpg" alt="Imagen Registro">
+            </div>
+            <div class="formBx">
+                <form id="registroForm" [formGroup]="RegistroForm" (ngSubmit)="guardarRegistro()">
+                    <h2>Crear una cuenta</h2>
+                    <input formControlName="name" type="text" required placeholder="Nombre">
+                    <input formControlName="email" type="text" required placeholder="Correo">
+                    <input formControlName="password" type="password" required placeholder="Contraseña">
+                    <input formControlName="Repassword" type="password" required placeholder="Confirmar Contraseña">
+                    <input type="submit" [disabled]="RegistroForm.invalid" value="Registro">
+                    <p class="signup">¿Ya tienes una cuenta? <a (click)="cambiarSesion()">Iniciar Sesión</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

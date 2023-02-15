@@ -1,0 +1,72 @@
+.pokemon-grid{
+    display: grid;
+    grid-gap: 16px;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(23%, 1fr));
+
+    margin-top: 90px;
+}
+
+.pokemon-grid .box{
+    width: 100%;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #595959;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+    display: grid;
+    text-align: center;
+
+    background-image: url('../../assets/img/pokeball.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pokemon-grid .box .backPokeball > img{
+    max-width: 100px;
+    display: block;
+    margin: 0 auto;
+    transform: scale(var(--escala, 1));
+    transition: transform 0.25s;
+}
+
+.pokemon-grid .box:hover{
+    --escala: 1.2;
+    cursor: pointer;
+    background-color: #9c9c9c;
+}
+
+.pokemon-types{
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 0.5fr));
+}
+
+.align{
+    text-align: center;
+}
+
+.NormalSize{
+    max-width: 150px;
+}
+
+.backPokeball{
+    align-self: center;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
+
+.angled-gradient {
+    background: linear-gradient(70deg, #e1e1e1, #919191);
+}
+
+/* #collapseJuegos{
+    margin-top: 20px;
+} */
+
+@media (max-width: 600px){
+    .pokemon-grid{
+        grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    }
+}

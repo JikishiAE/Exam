@@ -1,0 +1,12 @@
+<header [ngClass]="{'sticky': scrolled}" style="z-index: 60;">
+    <a href="#" class="logo">Prueba</a>
+    <div id="menu_movil" class="toggle" (click)="abrirMenu()">
+      <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
+    </div>
+    <nav id="linksMenu">
+      <ul>
+        <li><a [routerLink]="['/']" routerLinkActive="active">Inicio</a></li>
+        <li *ngIf="nombre != undefined" class="linkType">Hola {{ nombre }}</li>
+      </ul>
+    </nav>
+  </header>
