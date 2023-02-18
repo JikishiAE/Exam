@@ -34,16 +34,7 @@ export class LoginComponent implements OnInit {
     this.LoginForm = this.createMyFormLogin();
   }
 
-  ngOnInit(): void {
-    let useri: any;
-    if(localStorage.getItem("usuario")){
-      useri = JSON.parse(localStorage.getItem("usuario") || '{}');
-
-      if(useri != undefined){
-        this.router.navigateByUrl("/");
-      }
-    }
-  }
+  ngOnInit(): void {  }
 
   createMyForm(){
     return this.formBuilder.group({
@@ -113,7 +104,8 @@ export class LoginComponent implements OnInit {
     let usuario = {
       nombre: data.name,
       correo: data.email,
-      contrasena: data.password
+      contrasena: data.password,
+      recontrasena: data.Repassword
     }
 
     if(this.RegistroForm.valid){
@@ -121,12 +113,16 @@ export class LoginComponent implements OnInit {
       let encontrado: boolean = false;
 
       existe = JSON.parse(localStorage.getItem("usuarios") || '{}');
+      console.log(existe);
+      
 
-      existe.forEach(u => {
-        if(u.correo == usuario.correo){
-          encontrado = true;
-        }
-      })
+      if(JSON.stringify(existe) != '{}'){
+        existe.forEach(u => {
+          if(u.correo == usuario.correo){
+            encontrado = true;
+          }
+        })
+      }
 
       if(encontrado){
         Swal.fire({
@@ -137,7 +133,18 @@ export class LoginComponent implements OnInit {
         })
       }
       else{
-        this.usuariosService.agregarUsuario(usuario);
+        if(usuario.contrasena == usuario.recontrasena){
+          this.usuariosService.agregarUsuario(usuario);
+        }
+        else{
+          Swal.fire({
+            title: 'Error',
+            text: 'Las contraseñas no coinciden',
+            icon: 'error',
+            confirmButtonColor: '#dc3545',
+          })
+        }
+        
       }
     }
     else{

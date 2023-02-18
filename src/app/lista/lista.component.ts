@@ -15,15 +15,6 @@ export class ListaComponent implements OnInit {
   constructor(private apiService: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
-    let useri: any;
-    if(localStorage.getItem("usuario")){
-      useri = JSON.parse(localStorage.getItem("usuario") || '{}');
-
-      if(useri == undefined){
-        this.router.navigateByUrl("/login");
-      }
-    }
-
     this.getPokemons();
   }
 
